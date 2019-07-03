@@ -10,7 +10,10 @@ before_install:
   - docker build -t johnmutuma5/phone-num-gen -f ./docker/dev/Dockerfile . 
 
 script:
-  - docker run johnmutuma5/phone-num-gen npm run test -- --watch=false --codeCoverage=true
+  - docker run --name phone-num-gen johnmutuma5/phone-num-gen npm run test -- --watch=false --codeCoverage=true
 
 after_success:
+  - docker ps -a
+  # - docker start phone-num-gen 
+  - docker cp phone-num-gen:/app/coverage/ ./coverage
   - cat coverage/phone-num-gen/lcov.info  | ./node_modules/coveralls/bin/coveralls.js
