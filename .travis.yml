@@ -13,4 +13,4 @@ script:
   - docker run johnmutuma5/phone-num-gen npm run test -- --watch=false --codeCoverage=true
 
 after_success:
-  - cat ./coverage/phone-num-gen/lcov.info  | ./node_modules/coveralls/bin/coveralls.js
+  - cat coverage/phone-num-gen/lcov.info  | ./node_modules/coveralls/bin/coveralls.js
