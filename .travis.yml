@@ -13,8 +13,14 @@ script:
   - docker run --name phone-num-gen johnmutuma5/phone-num-gen npm run test -- --watch=false --codeCoverage=true
 
 after_success:
-  - docker ps -a
-  # - docker start phone-num-gen 
-  - docker cp phone-num-gen:/app/coverage/ ./coverage
-  - cat coverage/phone-num-gen/lcov.info  | ./node_modules/coveralls/bin/coveralls.js
-  - cat coverage/phone-num-gen/lcov.info
+  - docker start phone-num-gen 
+  # - docker cp phone-num-gen:/app/coverage/ ./coverage
+  # - cat coverage/phone-num-gen/lcov.info  | ./node_modules/coveralls/bin/coveralls.js
+  - |
+    docker exec \
+      -e COVERALLS_REPO_TOKEN="$COVERALLS_REPO_TOKEN" \
+      -e TRAVIS_JOB_ID="$TRAVIS_JOB_ID" \
+      -e TRAVIS_BRANCH="$TRAVIS_BRANCH" \
+      -it \
+      phone-num-gen \
+         bash -c "cat /app/coverage/phone-num-gen/lcov.info  | /app/node_modules/coveralls/bin/coveralls.js"
