@@ -4,6 +4,7 @@ services:
     build:
       context: .
       dockerfile: ./docker/dev/Dockerfile
+    container_name: phone-gen-client
     ports:
       - "4200:4200"
       - "49153:49153" # hot reloading port
@@ -11,6 +12,10 @@ services:
     volumes:
       - /app/node_modules
       - .:/app
-
+    environment:
+        TRAVIS: ${TRAVIS}
+        TRAVIS_JOB_ID: ${TRAVIS_JOB_ID}
+        TRAVIS_BRANCH: ${TRAVIS_BRANCH}
+        TRAVIS_PULL_REQUEST: ${TRAVIS_PULL_REQUEST}
 
 
