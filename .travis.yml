@@ -6,23 +6,10 @@ sudo: required
 services:
   - docker
 
-before_install:
-  - docker build -t johnmutuma5/phone-num-gen -f ./docker/dev/Dockerfile . 
-
 script:
-  - docker run --name phone-num-gen johnmutuma5/phone-num-gen npm run test -- --watch=false --codeCoverage=true
+  - docker-compose up -d client
+  - docker-compose exec client npm run test -- --watch=false --codeCoverage=true
 
 after_success:
-  - docker start phone-num-gen 
-  # - docker cp phone-num-gen:/app/coverage/ ./coverage
-  # - cat coverage/phone-num-gen/lcov.info  | ./node_modules/coveralls/bin/coveralls.js
-  - |
-    docker exec \
-      -e COVERALLS_REPO_TOKEN="$COVERALLS_REPO_TOKEN" \
-      -e TRAVIS="$TRAVIS" \
-      -e TRAVIS_JOB_ID="$TRAVIS_JOB_ID" \
-      -e TRAVIS_BRANCH="$TRAVIS_BRANCH" \
-      -e TRAVIS_PULL_REQUEST="$TRAVIS_PULL_REQUEST" \
-      -it \
-      phone-num-gen \
-         bash -c "cat /app/coverage/phone-num-gen/lcov.info  | /app/node_modules/coveralls/bin/coveralls.js"
+  - docker-compose exec client bash -c "cat /app/coverage/phone-num-gen/lcov.info  | /app/node_modules/coveralls/bin/coveralls.js"
+  - docker-compose down
