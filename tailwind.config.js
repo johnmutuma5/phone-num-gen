@@ -327,11 +327,12 @@ module.exports = {
       '6xl': '72rem',
       full: '100%',
     },
-    minHeight: {
+    minHeight: (theme) => ({
       '0': '0',
+      ...theme('spacing'),
       full: '100%',
       screen: '100vh',
-    },
+    }),
     minWidth: {
       '0': '0',
       full: '100%',
