@@ -1,0 +1,11 @@
+<div id="phone-gen" class="flex flex-col items-center mt-4">
+    <h3 class="font-bold">Click button to generate a new phone number</h3>
+    <p class="mt-4">New phone number: </p>
+    <div id="generated-phone" class="flex items-center justify-center text-white bg-teal-600 h-12 w-64 text-2xl">{{generatedNum}}</div>
+    <button (click)="onGenerateNumber()"
+            id="generate-phone-button"
+            type="button"
+            class="flex shadow-md hover:shadow-lg bg-blue-700 text-white antialiased rounded-full text-sm px-8 py-2 mt-8">
+        Generate
+    </button>
+</div>
