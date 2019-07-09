@@ -1,0 +1,23 @@
+<div class="pt-4">
+    <div class="font-bold text-sm mb-4">Total Numbers Generated:&nbsp;&nbsp;{{phoneNumbers.length}}</div>
+
+    <div id="phone-list-tools" class="flex text-sm">
+        <div class="mr-40">
+            Sort: &nbsp;
+            <span id="sort-ascending" (click)="onSortAscending()" class="pill">Ascending</span>
+            <span id="sort-descending" (click)="onSortDescending()" class="pill">Descending</span>
+        </div>
+        <div>
+            Filter: &nbsp;
+            <span id="filter-max" (click)="onGetMaxPhoneNumber()" class="pill">Maximum</span>
+            <span id="filter-min" (click)="onGetMinPhoneNumber()" class="pill">Minimum</span>
+            <span id="reset-filters" (click)="onResetFilters()" class="pill">All</span>
+        </div>
+    </div>
+    <div id="phone-numbers-container" class="pt-4">
+        <div *ngFor="let phoneNumber of numsToRender"
+              class="text-gray-900 px-4 py-4 mb-2 bg-gray-100 shadow-md">
+            {{phoneNumber}}
+        </div>
+    </div>
+</div>

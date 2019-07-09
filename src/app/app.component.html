@@ -1,14 +1,20 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div class="app-container flex flex-col bg-blue-100 h-screen">
-    <div id="top-bar" class="flex px-8 text-white items-center justify-center bg-blue-300 min-h-20">
-        PhoneTech - TM
+<div class="app-container flex bg-blue-100 h-screen">
+    <div id="leftside-bar" class="text-white text-xs pt-20 min-w-64 h-full flex flex-col bg-gray-900">
+        <a routerLinkActive="active" routerLink="/v1/phone/generate" class="py-2 px-4 hover:bg-gray-700">Generate Number</a>
+        <a routerLinkActive="active" routerLink="/v1/phone/list" class="py-2 px-4 hover:bg-gray-700">List Numbers</a>
     </div>
+    <div class="flex flex-col w-full">
+        <div id="top-bar" class="flex px-8 text-white items-center justify-center bg-blue-300 min-h-20">
+            PhoneTech - TM
+        </div>
 
-    <div id="app-content" class="px-4">
-        <router-outlet></router-outlet>
-    </div>
+        <div id="app-content" class="px-4 h-full">
+            <router-outlet></router-outlet>
+        </div>
 
-    <div id="footer" class="flex px-4 w-full fixed min-h-40 pt-8 bottom-0 bg-blue-900 text-white text-xs justify-center">
-        <p>Copyrght PhoneTech - TM</p>
+        <div id="footer" class="flex w-full relative bottom-0 bg-blue-900 text-white text-xs justify-center">
+            <p>Copyrght PhoneTech - TM</p>
+        </div>
     </div>
 </div>

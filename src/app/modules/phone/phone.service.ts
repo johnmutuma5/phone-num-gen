@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 const BASE_URL: string = 'http://localhost:3000/v1';
 
@@ -13,5 +13,15 @@ export class PhoneService {
 
   public generatePhoneNumber(): Observable<any> {
     return this.http.post<any>(`${BASE_URL}/phone/generate`, {});
+  }
+
+  public getPhoneNumbers (): Observable<any> {
+    return of([
+      '0700',
+      '0701',
+      '0702',
+      '0703',
+      '0704',
+    ]);
   }
 }
